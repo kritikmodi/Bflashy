@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".HomepageActivity"></activity>
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 android:theme="@style/AppTheme.NoActionBar"
@@ -22,6 +23,7 @@
             <intent-filter>
                 android:theme="@style/AppTheme.NoActionBar"
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

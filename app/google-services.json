@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "774274556694",
+    "project_id": "bflashy-ac52f",
+    "storage_bucket": "bflashy-ac52f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774274556694:android:7fc2c6f8d1364a1b266637",
+        "android_client_info": {
+          "package_name": "com.example.bflashy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "774274556694-569u5093h0g6t6k8opknlk328ivsc0aj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bflashy",
+            "certificate_hash": "f01b052fab2c73eb095f78a6ce26811cc4f7667f"
+          }
+        },
+        {
+          "client_id": "774274556694-3n72cbp991144t1dioen3k7qme5sbj1m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzAOD2NR72RRUqBlm8cVl_FLtZZSdbVaM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "774274556694-3n72cbp991144t1dioen3k7qme5sbj1m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
