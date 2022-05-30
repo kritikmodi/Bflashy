@@ -6,10 +6,14 @@ import android.os.Handler;
 import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
 
 
     private static int SPLASH_SCREEN_TIME_OUT=2000;
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         //can cover the entire screen.
 
         getSupportActionBar().hide();
+        mAuth = FirebaseAuth.getInstance();
 
         setContentView(R.layout.activity_main);
         //this will bind your MainActivity.class file with activity_main.
@@ -27,16 +32,21 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i=new Intent(MainActivity.this,
-                        LoginActivity.class);
                 //Intent is used to switch from one activity to another.
-
-                startActivity(i);
+                FirebaseUser user = mAuth.getCurrentUser();
+                if (user == null)
+                {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
+                else
+                {
+                    startActivity(new Intent(MainActivity.this, HomepageActivity.class));
+                }
                 //invoke the SecondActivity.
-
                 finish();
                 //the current activity will get finished.
             }
         }, SPLASH_SCREEN_TIME_OUT);
     }
+
 }
