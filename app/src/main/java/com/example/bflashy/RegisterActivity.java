@@ -1,14 +1,25 @@
 package com.example.bflashy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +29,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_register);
 
+        mAuth = FirebaseAuth.getInstance();
+
+        Button registerbutton= findViewById(R.id.btn_register);
+
+        registerbutton.setOnClickListener(view ->{
+            createUser();
+        });
+
         ImageView gotologin = (ImageView) findViewById(R.id.goToLogin);
         Intent intent = new Intent(this, LoginActivity.class);
         gotologin.setOnClickListener(new View.OnClickListener() {
@@ -26,15 +45,40 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
-        Button registerbutton = (Button) findViewById(R.id.btn_register);
-        Intent registerintent = new Intent(this, HomepageActivity.class);
-        registerbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(registerintent);
-            }
-        });
+    private void createUser(){
 
+        EditText email= findViewById(R.id.et_email);
+        EditText password= findViewById(R.id.et_password);
+
+        String emailtext = email.getText().toString();
+        String passwordtext = password.getText().toString();
+
+        if(TextUtils.isEmpty(emailtext))
+        {
+            email.setError("Email cannot be empty");
+            email.requestFocus();
+        }
+        else if(TextUtils.isEmpty(passwordtext))
+        {
+            password.setError("Password cannot be empty");
+            password.requestFocus();
+        }
+        else
+            {
+                mAuth.createUserWithEmailAndPassword(emailtext,passwordtext).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful())
+                    {
+                        Toast.makeText(RegisterActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(RegisterActivity.this, HomepageActivity.class));
+                    }
+                    else
+                        Toast.makeText(RegisterActivity.this, "Registration Error : " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }
