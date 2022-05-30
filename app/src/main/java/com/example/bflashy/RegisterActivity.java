@@ -48,10 +48,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void createUser(){
-
         EditText email= findViewById(R.id.et_email);
         EditText password= findViewById(R.id.et_password);
-
         String emailtext = email.getText().toString();
         String passwordtext = password.getText().toString();
 
@@ -81,4 +79,5 @@ public class RegisterActivity extends AppCompatActivity {
             });
         }
     }
+
 }
